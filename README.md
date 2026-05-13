@@ -79,7 +79,7 @@ tool calling, governance, and human-in-the-loop workflows.
 **If you use this repo, your response would be a genuinely valuable data point.**
 
 📋 **Take the survey (10 min):**
-[mahipal.engineer/survey?utm_source=github_repo&utm_medium=readme&utm_campaign=gars2026](https://mahipal.engineer/survey?utm_source=github_repo&utm_medium=readme&utm_campaign=gars2026)
+[Survey Link](https://mahipal.engineer/survey?utm_source=github_repo&utm_medium=readme&utm_campaign=gars2026)
 
 - 60 questions · Anonymous · Supervised by SRH Berlin
 - You get **50 Casky Tokens** for early access to [casky.ai](https://casky.ai)
