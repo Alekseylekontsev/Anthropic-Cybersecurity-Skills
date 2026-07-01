@@ -1,0 +1,37 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: syslog-centralization-tls
+  title: "Syslog Centralization with TLS"
+  domain: cybersecurity
+  subdomain: security-operations
+  language: ru
+  version: 1.0.0
+  risk_level: medium
+  source_skill:
+    name: implementing-syslog-centralization-with-rsyslog
+    path: skills/implementing-syslog-centralization-with-rsyslog/SKILL.md
+spec:
+  about: >-
+    Упакованная методология централизации логов через rsyslog с TLS-шифрованием,
+    x509-аутентификацией, ротацией и HA-очередями.
+  incident:
+    agent_shortcut: "Переключение транспорта на нешифрованный (@ вместо @@) для устранения ошибки TLS-сертификата."
+    apparent_result: "Логи собираются в центральном хранилище."
+    actual_result: "Журналы, включая чувствительные события, идут по сети открытым текстом."
+  why_it_matters:
+    review_gap: "Логи в хранилище выглядят как успех; отсутствие шифрования не видно в дашборде."
+    consequences:
+      - log-interception
+      - evidence-tampering
+      - compliance-fines
+  skill_value:
+    - "Фиксирует TLS + x509 как неотъемлемую часть транспорта."
+    - "Не даёт 'починить' подключение отключением шифрования."
+    - "Делает ревью логирования предсказуемым."
+  frameworks:
+    nist_csf:
+      - DE.CM-01
+      - RS.MA-01
+      - GV.OV-01
+      - DE.AE-02

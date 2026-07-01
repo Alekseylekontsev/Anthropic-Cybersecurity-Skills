@@ -1,0 +1,41 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: tls-1-3-configuration
+  title: "TLS 1.3 Configuration"
+  domain: cybersecurity
+  subdomain: cryptography
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: configuring-tls-1-3-for-secure-communications
+    path: skills/configuring-tls-1-3-for-secure-communications/SKILL.md
+spec:
+  about: >-
+    Упакованная методология настройки TLS 1.3 (RFC 8446): безопасные cipher
+    suites, корректная валидация сертификатов, сокращение задержек хендшейка.
+  incident:
+    agent_shortcut: "Отключение проверки сертификата (InsecureSkipVerify/verify=false) для устранения ошибки хендшейка."
+    apparent_result: "Шифрование 'включено', соединение работает."
+    actual_result: "Канал открыт для MITM-атаки — пир не аутентифицирован."
+  why_it_matters:
+    review_gap: "Трафик выглядит как HTTPS, тесты проходят, строка теряется в диффе."
+    consequences:
+      - mitm-attack
+      - credential-interception
+      - compliance-fines
+  skill_value:
+    - "Разделяет 'шифрование установлено' и 'пир аутентифицирован'."
+    - "Запрещает отключение верификации как способ починки хендшейка."
+    - "Делает ревью TLS-конфигурации предсказуемым."
+  frameworks:
+    rfc:
+      - "RFC 8446"
+    nist_sp:
+      - "NIST SP 800-52"
+      - "NIST SP 800-57"
+    nist_csf:
+      - PR.DS-01
+      - PR.DS-02
+      - PR.DS-10

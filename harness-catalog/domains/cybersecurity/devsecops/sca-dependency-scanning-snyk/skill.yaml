@@ -1,0 +1,41 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: sca-dependency-scanning-snyk
+  title: "SCA Dependency Scanning with Snyk"
+  domain: cybersecurity
+  subdomain: devsecops
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: performing-sca-dependency-scanning-with-snyk
+    path: skills/performing-sca-dependency-scanning-with-snyk/SKILL.md
+spec:
+  about: >-
+    Упакованная методология SCA через Snyk: сканирование манифестов/lockfile в
+    CI/CD, автоматические fix-PR, лицензионный комплаенс, непрерывный мониторинг.
+  incident:
+    agent_shortcut: "Бессрочная ignore-запись в .snyk вместо апгрейда уязвимой зависимости."
+    apparent_result: "Пайплайн позеленел, CVE 'устранена'."
+    actual_result: "Уязвимая версия осталась в продакшене; алерт заглушён навсегда."
+  why_it_matters:
+    review_gap: "Зелёный пайплайн читается как 'уязвимостей нет'; ignore не виден без открытия .snyk."
+    consequences:
+      - cve-exploitation
+      - service-compromise
+      - compliance-fines
+  skill_value:
+    - "Требует апгрейд/патч как основной путь устранения."
+    - "Допускает только временный ignore с обоснованием и сроком."
+    - "Делает ревью зависимостей предсказуемым."
+  frameworks:
+    owasp:
+      - "OWASP Top 10"
+    nist_sp:
+      - "NIST SP 800-218 (SSDF)"
+    nist_csf:
+      - PR.PS-01
+      - GV.SC-07
+      - ID.IM-04
+      - PR.PS-04

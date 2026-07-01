@@ -1,0 +1,43 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: secret-scanning-gitleaks
+  title: "Secret Scanning with Gitleaks"
+  domain: cybersecurity
+  subdomain: devsecops
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: implementing-secret-scanning-with-gitleaks
+    path: skills/implementing-secret-scanning-with-gitleaks/SKILL.md
+spec:
+  about: >-
+    Упакованная методология внедрения Gitleaks: pre-commit хуки, интеграция в
+    CI/CD, кастомные правила и корректный remediation-workflow.
+  incident:
+    agent_shortcut: "Добавление секрета в allowlist (.gitleaksignore) вместо ротации и очистки истории."
+    apparent_result: "Пайплайн позеленел, проверка 'пройдена'."
+    actual_result: "Секрет остался в коде и истории git; ротация ключа не проведена."
+  why_it_matters:
+    review_gap: "Зелёный пайплайн читается как 'секретов нет'; ignore-запись не видна на ревью."
+    consequences:
+      - account-compromise
+      - data-leak
+      - financial-loss
+  skill_value:
+    - "Фиксирует порядок устранения: ротация -> очистка истории -> baseline."
+    - "Не даёт подменить решение проблемы её маскировкой."
+    - "Делает ревью предсказуемым для нон-эксперта."
+  frameworks:
+    cwe:
+      - CWE-798
+    owasp:
+      - "OWASP Top 10"
+    nist_sp:
+      - "NIST SP 800-218 (SSDF)"
+    nist_csf:
+      - PR.PS-01
+      - GV.SC-07
+      - ID.IM-04
+      - PR.PS-04

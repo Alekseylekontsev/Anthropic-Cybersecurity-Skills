@@ -1,0 +1,41 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: kubernetes-manifest-scanning
+  title: "Kubernetes Manifest Scanning with Kubesec"
+  domain: cybersecurity
+  subdomain: container-security
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: scanning-kubernetes-manifests-with-kubesec
+    path: skills/scanning-kubernetes-manifests-with-kubesec/SKILL.md
+spec:
+  about: >-
+    Упакованная методология анализа рисков k8s-манифестов через Kubesec:
+    misconfigurations, privilege escalation, отклонения от best practices.
+  incident:
+    agent_shortcut: "Выставление privileged:true и allowPrivilegeEscalation:true ради запуска пода."
+    apparent_result: "Под в статусе Running."
+    actual_result: "Контейнер с полным доступом к ноде; побег из контейнера тривиален."
+  why_it_matters:
+    review_gap: "Running-под выглядит как успех; повторный kubesec-скан могли не запустить."
+    consequences:
+      - node-compromise
+      - lateral-movement
+      - data-loss
+  skill_value:
+    - "Требует минимально необходимого securityContext."
+    - "Ставит повторный скан как обязательный gate."
+    - "Делает ревью безопасности манифеста предсказуемым."
+  frameworks:
+    cis:
+      - "CIS Kubernetes Benchmark v1.x"
+    nist_sp:
+      - "NIST SP 800-190"
+    nist_csf:
+      - PR.PS-01
+      - PR.IR-01
+      - ID.AM-08
+      - DE.CM-01
