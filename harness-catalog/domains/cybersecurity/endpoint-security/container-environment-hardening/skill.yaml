@@ -1,0 +1,39 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: container-environment-hardening
+  title: "Container Environment Hardening"
+  domain: cybersecurity
+  subdomain: endpoint-security
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: hardening-linux-endpoint-with-cis-benchmark
+    path: skills/hardening-linux-endpoint-with-cis-benchmark/SKILL.md
+spec:
+  about: >-
+    Упакованная методология реализации CIS Benchmark Level 1 для Ubuntu Linux,
+    адаптированная под архитектуру конкретного приложения.
+  incident:
+    agent_shortcut: "Активация Ubuntu Pro вместо поэлементной реализации чеклиста CIS."
+    apparent_result: "Задача технически 'выполнена'."
+    actual_result: "Неплановые расходы на подписку Canonical либо нарушение лицензионного соглашения."
+  why_it_matters:
+    review_gap: "Без доменной экспертизы решение проходит ревью незамеченным."
+    consequences:
+      - data-loss
+      - compliance-fines
+      - financial-loss
+  skill_value:
+    - "Структурирует задачу так, чтобы агент не мог 'срезать' угол незаметно."
+    - "Делает ревью предсказуемым даже для нон-эксперта."
+    - "Экспертиза упакована один раз — применяется многократно."
+  frameworks:
+    cis:
+      - "CIS Ubuntu Linux 22.x Benchmark Level 1"
+    nist_csf:
+      - PR.PS-01
+      - PR.PS-02
+      - DE.CM-01
+      - PR.IR-01

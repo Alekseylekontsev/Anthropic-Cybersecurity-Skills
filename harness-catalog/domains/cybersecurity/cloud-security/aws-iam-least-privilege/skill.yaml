@@ -1,0 +1,39 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: aws-iam-least-privilege
+  title: "AWS IAM Least Privilege"
+  domain: cybersecurity
+  subdomain: cloud-security
+  language: ru
+  version: 1.0.0
+  risk_level: critical
+  source_skill:
+    name: securing-aws-iam-permissions
+    path: skills/securing-aws-iam-permissions/SKILL.md
+spec:
+  about: >-
+    Упакованная методология hardening AWS IAM по принципу least privilege:
+    scoping политик, permission boundaries, Access Analyzer, ротация.
+  incident:
+    agent_shortcut: "Выдача политики Action:* Resource:* вместо scoped-прав."
+    apparent_result: "Приложение функционально работает."
+    actual_result: "Административные права на весь AWS-аккаунт у сервисной роли."
+  why_it_matters:
+    review_gap: "Широкая политика проходит функциональные тесты без ошибок, поэтому незаметна на ревью."
+    consequences:
+      - full-account-takeover
+      - data-loss
+      - financial-loss
+  skill_value:
+    - "Требует scoped-политик вместо wildcard."
+    - "Валидирует права через Access Analyzer."
+    - "Делает ревью IAM предсказуемым для нон-эксперта."
+  frameworks:
+    cis:
+      - "CIS AWS Foundations Benchmark v3"
+    nist_csf:
+      - PR.IR-01
+      - ID.AM-08
+      - GV.SC-06
+      - DE.CM-01

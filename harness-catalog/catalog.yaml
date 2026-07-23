@@ -1,0 +1,79 @@
+apiVersion: harness.altoros.io/v1
+kind: SkillCaseCatalog
+metadata:
+  name: harness-catalog
+  title: "Harness — AI Dev Factory: каталог кейсов Cybersecurity Skills"
+  description: >-
+    Каталог экспертных кейсов для Claude Code Cybersecurity Skills. Каждый кейс
+    демонстрирует ценность упакованной доменной методологии на примере
+    характерного "среза угла" AI-агента, который без экспертизы прошёл бы ревью.
+  version: 1.0.0
+  language: ru
+  maintainer: helpdesk_team@altoros.com
+spec:
+  format:
+    case: case.md
+    manifest: skill.yaml
+  domains:
+    - cybersecurity
+  cases:
+    - id: container-environment-hardening
+      title: "Container Environment Hardening"
+      domain: cybersecurity
+      subdomain: endpoint-security
+      path: domains/cybersecurity/endpoint-security/container-environment-hardening
+      source_skill: hardening-linux-endpoint-with-cis-benchmark
+    - id: secret-scanning-gitleaks
+      title: "Secret Scanning with Gitleaks"
+      domain: cybersecurity
+      subdomain: devsecops
+      path: domains/cybersecurity/devsecops/secret-scanning-gitleaks
+      source_skill: implementing-secret-scanning-with-gitleaks
+    - id: sca-dependency-scanning-snyk
+      title: "SCA Dependency Scanning with Snyk"
+      domain: cybersecurity
+      subdomain: devsecops
+      path: domains/cybersecurity/devsecops/sca-dependency-scanning-snyk
+      source_skill: performing-sca-dependency-scanning-with-snyk
+    - id: sql-injection-testing-scope
+      title: "SQL Injection Testing within Scope"
+      domain: cybersecurity
+      subdomain: penetration-testing
+      path: domains/cybersecurity/penetration-testing/sql-injection-testing-scope
+      source_skill: exploiting-sql-injection-vulnerabilities
+    - id: aws-iam-least-privilege
+      title: "AWS IAM Least Privilege"
+      domain: cybersecurity
+      subdomain: cloud-security
+      path: domains/cybersecurity/cloud-security/aws-iam-least-privilege
+      source_skill: securing-aws-iam-permissions
+    - id: tls-1-3-configuration
+      title: "TLS 1.3 Configuration"
+      domain: cybersecurity
+      subdomain: cryptography
+      path: domains/cybersecurity/cryptography/tls-1-3-configuration
+      source_skill: configuring-tls-1-3-for-secure-communications
+    - id: cryptographic-audit-password-hashing
+      title: "Cryptographic Audit & Password Hashing"
+      domain: cybersecurity
+      subdomain: cryptography
+      path: domains/cybersecurity/cryptography/cryptographic-audit-password-hashing
+      source_skill: performing-cryptographic-audit-of-application
+    - id: kubernetes-manifest-scanning
+      title: "Kubernetes Manifest Scanning with Kubesec"
+      domain: cybersecurity
+      subdomain: container-security
+      path: domains/cybersecurity/container-security/kubernetes-manifest-scanning
+      source_skill: scanning-kubernetes-manifests-with-kubesec
+    - id: network-segmentation-firewall-zones
+      title: "Network Segmentation with Firewall Zones"
+      domain: cybersecurity
+      subdomain: network-security
+      path: domains/cybersecurity/network-security/network-segmentation-firewall-zones
+      source_skill: implementing-network-segmentation-with-firewall-zones
+    - id: syslog-centralization-tls
+      title: "Syslog Centralization with TLS"
+      domain: cybersecurity
+      subdomain: security-operations
+      path: domains/cybersecurity/security-operations/syslog-centralization-tls
+      source_skill: implementing-syslog-centralization-with-rsyslog

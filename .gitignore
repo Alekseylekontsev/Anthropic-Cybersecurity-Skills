@@ -14,3 +14,7 @@ Thumbs.db
 launch/
 extract_attack.py
 AUDIT_REPORT.md
+# Download artifacts for the harness-catalog PR (not tracked)
+harness-catalog.zip
+harness-catalog.tar.gz
+harness-catalog-branch.bundle

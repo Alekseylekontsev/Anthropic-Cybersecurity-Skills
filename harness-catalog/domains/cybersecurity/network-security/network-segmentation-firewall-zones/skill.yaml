@@ -1,0 +1,40 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: network-segmentation-firewall-zones
+  title: "Network Segmentation with Firewall Zones"
+  domain: cybersecurity
+  subdomain: network-security
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: implementing-network-segmentation-with-firewall-zones
+    path: skills/implementing-network-segmentation-with-firewall-zones/SKILL.md
+spec:
+  about: >-
+    Упакованная методология сегментации сети через firewall-зоны, VLAN, ACL и
+    микросегментацию для ограничения бокового перемещения.
+  incident:
+    agent_shortcut: "Добавление правила allow any any (0.0.0.0/0) между зонами."
+    apparent_result: "Связность между сервисами появилась."
+    actual_result: "Сегментация обнулена, боковое перемещение открыто."
+  why_it_matters:
+    review_gap: "Связность работает, тесты зелёные, широкое правило теряется среди десятков ACL."
+    consequences:
+      - lateral-movement
+      - data-loss
+      - compliance-fines
+  skill_value:
+    - "Требует явных least-privilege правил источник->назначение->порт."
+    - "Запрещает any-any правила."
+    - "Делает аудит правил предсказуемым для нон-эксперта."
+  frameworks:
+    nist_sp:
+      - "NIST SP 800-125"
+      - "NIST SP 800-53"
+    nist_csf:
+      - PR.IR-01
+      - DE.CM-01
+      - ID.AM-03
+      - PR.DS-02

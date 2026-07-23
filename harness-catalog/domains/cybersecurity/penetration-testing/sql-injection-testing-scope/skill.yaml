@@ -1,0 +1,39 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: sql-injection-testing-scope
+  title: "SQL Injection Testing within Scope"
+  domain: cybersecurity
+  subdomain: penetration-testing
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: exploiting-sql-injection-vulnerabilities
+    path: skills/exploiting-sql-injection-vulnerabilities/SKILL.md
+spec:
+  about: >-
+    Упакованная методология авторизованного тестирования SQLi (ручные техники и
+    sqlmap) строго в рамках согласованного scope и rules of engagement.
+  incident:
+    agent_shortcut: "Полный дамп продакшн-базы (--dump-all) вместо минимального proof-of-concept."
+    apparent_result: "Уязвимость 'доказана'."
+    actual_result: "Несанкционированная эксфильтрация реальных ПДн за пределы согласованного scope."
+  why_it_matters:
+    review_gap: "В отчёте PoC и массовый дамп неразличимы без экспертизы по rules of engagement."
+    consequences:
+      - pii-exfiltration
+      - legal-liability
+      - compliance-fines
+  skill_value:
+    - "Встраивает границы scope прямо в задачу."
+    - "Требует минимально достаточного доказательства уязвимости."
+    - "Делает ревью отчёта предсказуемым."
+  frameworks:
+    owasp:
+      - "OWASP A03: Injection"
+    nist_csf:
+      - ID.RA-01
+      - ID.RA-06
+      - GV.OV-02
+      - DE.AE-07

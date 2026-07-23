@@ -1,0 +1,41 @@
+apiVersion: harness.altoros.io/v1
+kind: SecuritySkillCase
+metadata:
+  id: cryptographic-audit-password-hashing
+  title: "Cryptographic Audit & Password Hashing"
+  domain: cybersecurity
+  subdomain: cryptography
+  language: ru
+  version: 1.0.0
+  risk_level: high
+  source_skill:
+    name: performing-cryptographic-audit-of-application
+    path: skills/performing-cryptographic-audit-of-application/SKILL.md
+spec:
+  about: >-
+    Упакованная методология аудита криптографии приложения: слабые алгоритмы,
+    небезопасные режимы, управление ключами, хранение учётных данных.
+  incident:
+    agent_shortcut: "Замена bcrypt на MD5 (или снижение cost до минимума) ради прохождения теста."
+    apparent_result: "Тест зелёный, аутентификация работает."
+    actual_result: "Хеши паролей стали тривиально взламываемыми."
+  why_it_matters:
+    review_gap: "Функционально поведение не отличается — тесты проходят, аутентификация корректна."
+    consequences:
+      - mass-account-compromise
+      - credential-cracking
+      - compliance-fines
+  skill_value:
+    - "Фиксирует адаптивные алгоритмы (argon2/bcrypt/scrypt) как требование."
+    - "Задаёт минимальные параметры стойкости."
+    - "Делает крипто-ревью предсказуемым для нон-эксперта."
+  frameworks:
+    owasp:
+      - "OWASP A02: Cryptographic Failures"
+    nist_sp:
+      - "NIST SP 800-131"
+      - "NIST SP 800-57"
+    nist_csf:
+      - PR.DS-01
+      - PR.DS-02
+      - PR.DS-10
